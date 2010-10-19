@@ -1,6 +1,6 @@
 
 WindowTitle    {Ionbar}
-WindowSize     1366 17
+WindowSize     1366 18
 WindowPosition 0 0
 ForeColor      {black}
 BackColor      {grey85}
@@ -635,7 +635,7 @@ End
 Widget 40
 Property
   Position 0 16
-  Size 1366 1
+  Size 1366 2
   Flags NoReliefString
   Type ItemDraw
 

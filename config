@@ -104,5 +104,5 @@ AddToFunc   MakeUnmaximize
   
 DestroyFunc CenterWindow
 AddToFunc   CenterWindow
-+ I FvwmExpand AnimatedMove %{POSIX::floor(($WIDTH - $[w.width])/2)}%p \
-                            %{POSIX::floor(16 +($HEIGHT - 16 - $[w.height])/2)}%p
++ I FvwmExpand AnimatedMove %{POSIX::ceil(($WIDTH - $[w.width])/2)}%p \
+                            %{POSIX::ceil(18 +($HEIGHT - 18 - $[w.height])/2)}%p

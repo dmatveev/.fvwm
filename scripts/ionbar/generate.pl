@@ -13,7 +13,7 @@ my $base      = 10;
 my $activecs  = 30;
 my $ykludge   = 2;
 my $buttons   = 20;
-my $wndheight = 17;
+my $wndheight = 18;
 my $btnheight = 16 + $ykludge;
 my $btnposy   = 0  - $ykludge;
 
@@ -57,7 +57,7 @@ for (my $i = 0; $i < $buttons; $i++) {
 }
 
 # echo the border
-print OUT widget     (40, 0, 16, $resx, 1);
+print OUT widget     (40, 0, 16, $resx, 2);
 print OUT color      ("#a9a9a9");
 print OUT end_widget ();
 
