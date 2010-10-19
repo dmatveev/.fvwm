@@ -1,0 +1,108 @@
+DesktopSize 1x1
+
+Style * Font -*-terminus-bold-*-*-*-14-*-*-*-*-*-*-u, SloppyFocus, MwmBorder, \
+        EWMHUseStrutHints, EWMHPlacementUseWorkingArea
+Style Ionbar !Borders, !Handles, !Title, Sticky, WindowListSkip, NeverFocus
+Style FvwmTabs !Title
+
+EwmhBaseStruts 0 0 18 0
+
+IgnoreModifiers default
+
+Key F2     A N  Exec exec urxvt
+Key F3     A N  FvwmDmenu
+Key C      A M  Close
+Key Return A M  ToggleMaximize
+Key Left   A CM GotoDesk -1 0 19
+Key Right  A CM GotoDesk 1 0 19
+Key Left   A M  MoveToDesk -1 0 19
+Key Right  A M  MoveToDesk 1 0 19
+Key Space  A 4  CenterWindow
+PipeRead '$[HOME]/.fvwm/scripts/keys.pl'
+
+DestroyFunc FvwmDmenu
+AddToFunc   FvwmDmenu
++ I Exec exec `ls /usr/bin | dmenu -b -p Launch \
+    -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
+
+DestroyModuleConfig FvwmEvent
+*FvwmEvent: new_desk DeskChangedHook
+
+DestroyFunc FvwmExpand
+AddToFunc   FvwmExpand
++ I SendToModule FvwmPerl preprocess -c -- $*
+
+DestroyFunc FvwmEval
+AddToFunc   FvwmEval
++ I SendToModule FvwmPerl eval $*
+
+DestroyFunc DeskChangedHook
+AddToFunc   DeskChangedHook
++ I FvwmEval   $h{last_desk} = $h{current_desk}; $h{current_desk} = $[desk.n]; 
++ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
+                        SendString %{$h{last_desk} + 1}% 2
++ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
+                        SendString %{$h{current_desk} + 1}% 1 
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I StartIonbar
++ I Module FvwmEvent
++ I Module FvwmCommandS
++ I Module FvwmPerl
++ I FvwmEval use POSIX
++ I Exec exec $[HOME]/.fvwm/scripts/ionbar/animate.pl
+
+DestroyFunc StartIonbar
+AddToFunc   StartIonbar
++ I PipeRead "$[HOME]/.fvwm/scripts/ionbar/generate.pl \
+              $[HOME]/.fvwm/scripts/ionbar/ionbar"
++ I Module FvwmScript $[HOME]/.fvwm/scripts/ionbar/ionbar
++ I LoadDeskColorsets 0
+
+DestroyFunc LoadDeskColorsets
+AddToFunc   LoadDeskColorsets
++ I PipeRead '$[HOME]/.fvwm/scripts/ionbar/rainbow.pl $0'
+
+Colorset 30 bg black, fg gray90
+
+DestroyFunc ActivateWindow
+AddToFunc   ActivateWindow
++ I Iconify off
++ I FlipFocus
++ I Raise
++ I WarpToWindow 5p 5p
+
+DestroyFunc HideWindow
+AddToFunc   HideWindow
++ I Iconify
+
+DestroyFunc OpenWindow
+AddToFunc   OpenWindow
++ I Iconify off
++ I Raise
+
+DestroyFunc ToggleMaximize
+AddToFunc   ToggleMaximize
++ I ThisWindow (State 31) MakeUnmaximize 
++ I TestRc (NoMatch) MakeMaximize
+
+DestroyFunc MakeMaximize
+AddToFunc   MakeMaximize
++ I State 31 True
++ I WindowStyle !Title, !Handles, !Borders
++ I UpdateStyles
++ I Maximize
++ I CenterWindow
+
+DestroyFunc MakeUnmaximize
+AddToFunc   MakeUnmaximize
++ I State 31 False
++ I WindowStyle Title, Handles, Borders
++ I UpdateStyles
++ I Maximize
+  
+DestroyFunc CenterWindow
+AddToFunc   CenterWindow
++ I FvwmExpand AnimatedMove %{POSIX::floor(($WIDTH - $[w.width])/2)}%p \
+                            %{POSIX::floor(16 +($HEIGHT - 16 - $[w.height])/2)}%p
