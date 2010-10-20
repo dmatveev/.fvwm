@@ -18,6 +18,7 @@ Key Right  A CM GotoDesk 1 0 19
 Key Left   A M  MoveToDesk -1 0 19
 Key Right  A M  MoveToDesk 1 0 19
 Key Space  A 4  CenterWindow
+Key R      W 4  Resize
 PipeRead '$[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
