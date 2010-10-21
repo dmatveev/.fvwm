@@ -12,13 +12,14 @@ IgnoreModifiers default
 Key F2     A N  Exec exec urxvt
 Key F3     A N  FvwmDmenu
 Key C      A M  Close
-Key Return A M  ToggleMaximize
+Key Return W M  ToggleMaximize
 Key Left   A CM GotoDesk -1 0 19
 Key Right  A CM GotoDesk 1 0 19
-Key Left   A M  MoveToDesk -1 0 19
-Key Right  A M  MoveToDesk 1 0 19
-Key Space  A 4  CenterWindow
+Key Left   W M  MoveToDesk -1 0 19
+Key Right  W M  MoveToDesk 1 0 19
+Key Space  W 4  CenterWindow
 Key R      W 4  Resize
+Key M      W 4  Move
 PipeRead '$[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
