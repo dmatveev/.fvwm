@@ -20,7 +20,7 @@ Key Right  W M  MoveToDesk 1 0 19
 Key Space  W 4  CenterWindow
 Key R      W 4  Resize
 Key M      W 4  Move
-PipeRead '$[HOME]/.fvwm/scripts/keys.pl'
+PipeRead 'perl $[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
 AddToFunc   FvwmDmenu
@@ -53,18 +53,18 @@ AddToFunc   StartFunction
 + I Module FvwmCommandS
 + I Module FvwmPerl
 + I FvwmEval use POSIX
-+ I Exec exec $[HOME]/.fvwm/scripts/ionbar/animate.pl
++ I Exec exec perl $[HOME]/.fvwm/scripts/ionbar/animate.pl
 
 DestroyFunc StartIonbar
 AddToFunc   StartIonbar
-+ I PipeRead "$[HOME]/.fvwm/scripts/ionbar/generate.pl \
++ I PipeRead "perl $[HOME]/.fvwm/scripts/ionbar/generate.pl \
               $[HOME]/.fvwm/scripts/ionbar/ionbar"
 + I Module FvwmScript $[HOME]/.fvwm/scripts/ionbar/ionbar
 + I LoadDeskColorsets 0
 
 DestroyFunc LoadDeskColorsets
 AddToFunc   LoadDeskColorsets
-+ I PipeRead '$[HOME]/.fvwm/scripts/ionbar/rainbow.pl $0'
++ I PipeRead 'perl $[HOME]/.fvwm/scripts/ionbar/rainbow.pl $0'
 
 Colorset 30 bg black, fg gray90
 
@@ -108,3 +108,4 @@ DestroyFunc CenterWindow
 AddToFunc   CenterWindow
 + I FvwmExpand AnimatedMove %{POSIX::ceil(($WIDTH - $[w.width])/2)}%p \
                             %{POSIX::ceil(18 +($HEIGHT - 18 - $[w.height])/2)}%p
+
