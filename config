@@ -24,8 +24,9 @@ PipeRead 'perl $[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
 AddToFunc   FvwmDmenu
-+ I Exec exec `ls /usr/bin | dmenu -b -p Launch \
-    -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
++ I Exec exec `echo $PATH | sed 's/\:/ /g' | xargs ls | \
+               sed -e 's/^\/[^:]*:$//g' -e '/^$/d' | \
+               dmenu -b -p Launch -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
 
 DestroyModuleConfig FvwmEvent
 *FvwmEvent: new_desk DeskChangedHook
