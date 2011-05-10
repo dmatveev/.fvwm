@@ -11,6 +11,7 @@ IgnoreModifiers default
 
 Key F2     A N  Exec exec urxvt
 Key F3     A N  FvwmDmenu
+Key F12    A N  FvwmLock
 Key C      A M  Close
 Key Return W M  ToggleMaximize
 Key Left   A CM GotoDesk -1 0 19
@@ -19,7 +20,14 @@ Key Left   W M  MoveToDesk -1 0 19
 Key Right  W M  MoveToDesk 1 0 19
 Key Space  W 4  CenterWindow
 Key R      W 4  Resize
+Key R      F 4  Resize
+Key R      S 4  Resize
+Key R      T 4  Resize
 Key M      W 4  Move
+Key M      F 4  Move
+Key M      S 4  Move
+Key M      T 4  Move
+Key S      A 4  FvwmFlashPlayerAutoSize
 PipeRead 'perl $[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
@@ -27,6 +35,14 @@ AddToFunc   FvwmDmenu
 + I Exec exec `echo $PATH | sed 's/\:/ /g' | xargs ls | \
                sed -e 's/^\/[^:]*:$//g' -e '/^$/d' | \
                dmenu -b -p Launch -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
+
+DestroyFunc FvwmLock
+AddToFunc   FvwmLock
++ I Exec exec xscreensaver-command -lock
+
+DestroyFunc FvwmFlashPlayerAutoSize 
+AddToFunc   FvwmFlashPlayerAutoSize 
++ I Resize 430p 460p
 
 DestroyModuleConfig FvwmEvent
 *FvwmEvent: new_desk DeskChangedHook
