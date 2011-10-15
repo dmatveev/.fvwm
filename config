@@ -17,12 +17,6 @@ AddToFunc   FWKey
 + I Key $0 T $1 $[2-]
 
 
-+ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
-                        SendString %{$h{last_desk} + 1}% 2
-+ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
-                        SendString %{$h{current_desk} + 1}% 1 
-
-
 Key     F2       A   N    Exec exec urxvt
 Key     F3       A   N    FvwmDmenu
 Key     F12      A   N    FvwmLock
