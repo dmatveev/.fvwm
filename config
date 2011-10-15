@@ -9,25 +9,34 @@ EwmhBaseStruts 0 0 18 0
 
 IgnoreModifiers default
 
-Key F2     A N  Exec exec urxvt
-Key F3     A N  FvwmDmenu
-Key F12    A N  FvwmLock
-Key C      A M  Close
-Key Return W M  ToggleMaximize
-Key Left   A CM GotoDesk -1 0 19
-Key Right  A CM GotoDesk 1 0 19
-Key Left   W M  MoveToDesk -1 0 19
-Key Right  W M  MoveToDesk 1 0 19
-Key Space  W 4  CenterWindow
-Key R      W 4  Resize
-Key R      F 4  Resize
-Key R      S 4  Resize
-Key R      T 4  Resize
-Key M      W 4  Move
-Key M      F 4  Move
-Key M      S 4  Move
-Key M      T 4  Move
-Key S      A 4  FvwmFlashPlayerAutoSize
+# Args: Key, Modifier, Actions
+DestroyFunc FWKey
+AddToFunc   FWKey
++ I Key $0 W $1 $[2-]
++ I Key $0 F $1 $[2-]
++ I Key $0 S $1 $[2-]
++ I Key $0 T $1 $[2-]
+
+
++ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
+                        SendString %{$h{last_desk} + 1}% 2
++ I FvwmExpand SendToModule $[HOME]/.fvwm/scripts/ionbar/ionbar \
+                        SendString %{$h{current_desk} + 1}% 1 
+
+
+Key     F2       A   N    Exec exec urxvt
+Key     F3       A   N    FvwmDmenu
+Key     F12      A   N    FvwmLock
+Key     Left     A   CM   GotoDesk -1 0 19
+Key     Right    A   CM   GotoDesk 1 0 19
+FWKey   C            M    Close
+FWKey   Return       M    ToggleMaximize
+FWKey   Left         M    MoveToDesk -1 0 19
+FWKey   Right        M    MoveToDesk 1 0 19
+FWKey   Space        4    CenterWindow
+FWKey   R            4    Resize
+FWKey   M            4    Move
+Key     S        A   4    FvwmFlashPlayerAutoSize
 PipeRead 'perl $[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
