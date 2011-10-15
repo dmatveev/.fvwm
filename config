@@ -29,7 +29,7 @@ Key     F3       A   N    FvwmDmenu
 Key     F12      A   N    FvwmLock
 
 Key     Left     A   CM   GotoDesk -1 0 19
-Key     Right    A   CM   GotoDesk 1 0 19
+Key     Right    A   CM   GotoDesk  1 0 19
 
 CMove                4    75p
 CMove                4S   15p
@@ -38,7 +38,7 @@ CMove                4C   1p
 FWKey   C            M    Close
 FWKey   Return       M    ToggleMaximize
 FWKey   Left         M    MoveToDesk -1 0 19
-FWKey   Right        M    MoveToDesk 1 0 19
+FWKey   Right        M    MoveToDesk  1 0 19
 FWKey   Space        4    CenterWindow
 FWKey   R            4    Resize
 FWKey   M            4    Move
@@ -52,7 +52,7 @@ AddToFunc   FvwmDmenu
                | sed 's/\:/ /g' \
                | xargs ls \
                | sed -e 's/^\/[^:]*:$//g' -e '/^$/d' \
-               | dmenu -b -p Launch -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
+               | dmenu -b -p "Launch" -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
 
 DestroyFunc FvwmLock
 AddToFunc   FvwmLock
@@ -139,4 +139,3 @@ DestroyFunc CenterWindow
 AddToFunc   CenterWindow
 + I FvwmExpand AnimatedMove %{POSIX::ceil(($WIDTH - $[w.width])/2)}%p \
                             %{POSIX::ceil(18 +($HEIGHT - 18 - $[w.height])/2)}%p
-
