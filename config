@@ -9,7 +9,6 @@ EwmhBaseStruts 0 0 18 0
 
 IgnoreModifiers default
 
-# Args: Key, Modifier, Actions
 DestroyFunc FWKey
 AddToFunc   FWKey
 + I Key $0 W $1 $[2-]
@@ -41,9 +40,11 @@ PipeRead 'perl $[HOME]/.fvwm/scripts/keys.pl'
 
 DestroyFunc FvwmDmenu
 AddToFunc   FvwmDmenu
-+ I Exec exec `echo $PATH | sed 's/\:/ /g' | xargs ls | \
-               sed -e 's/^\/[^:]*:$//g' -e '/^$/d' | \
-               dmenu -b -p Launch -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
++ I Exec exec `echo $PATH \
+               | sed 's/\:/ /g' \
+               | xargs ls \
+               | sed -e 's/^\/[^:]*:$//g' -e '/^$/d' \
+               | dmenu -b -p Launch -fn -misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-r`
 
 DestroyFunc FvwmLock
 AddToFunc   FvwmLock
