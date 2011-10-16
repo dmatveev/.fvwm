@@ -24,7 +24,7 @@ AddToFunc   CMove
 + I Key Right A $0 CursorMove  $1   0
 
 
-Key     F2       A   N    Exec exec urxvt
+Key     F2       A   N    Exec exec xterm
 Key     F3       A   N    FvwmDmenu
 Key     F12      A   N    FvwmLock
 
