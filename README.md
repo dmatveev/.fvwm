@@ -51,4 +51,4 @@ Hotkeys
 About
 -----
 Originally written and used by Dmitry Matveev in 2010..2013.
-Licensed under WTFPLv2.
+Licensed under BSD.
