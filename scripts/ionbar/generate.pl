@@ -136,7 +136,7 @@ ForeColor      {black}
 BackColor      {grey85}
 ShadowColor    {grey55}
 HilightColor   {grey100}
-Font           -*-terminus-bold-*-*-*-14-*-*-*-*-*-*-u
+Font           -*-serenetypewriter-bold-*-*-*-12-*-*-*-*-*-*-ru
 
 Init
   Begin

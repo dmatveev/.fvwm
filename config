@@ -1,6 +1,6 @@
 DesktopSize 1x1
 
-Style * Font -*-terminus-bold-*-*-*-14-*-*-*-*-*-*-u, SloppyFocus, MwmBorder, \
+Style * Font -*-serenetypewriter-bold-*-*-*-12-*-*-*-*-*-*-ru, SloppyFocus, MwmBorder, \
         EWMHUseStrutHints, EWMHPlacementUseWorkingArea
 Style Ionbar !Borders, !Handles, !Title, Sticky, WindowListSkip, NeverFocus
 Style FvwmTabs !Title
@@ -126,7 +126,6 @@ AddToFunc   MakeMaximize
 + I WindowStyle !Title, !Handles, !Borders
 + I UpdateStyles
 + I Maximize
-+ I CenterWindow
 
 DestroyFunc MakeUnmaximize
 AddToFunc   MakeUnmaximize
